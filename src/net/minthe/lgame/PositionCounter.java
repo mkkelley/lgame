@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+package net.minthe.lgame;
+
 import java.util.ArrayList;
 import java.util.List;
 

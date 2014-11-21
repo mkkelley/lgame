@@ -1,3 +1,5 @@
+package net.minthe.lgame;
+
 /**
  * Created by Michael Kelley on 11/17/14.
  * See LICENSE file for license information.

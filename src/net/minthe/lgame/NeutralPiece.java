@@ -1,3 +1,5 @@
+package net.minthe.lgame;
+
 import java.util.ArrayList;
 
 /**
