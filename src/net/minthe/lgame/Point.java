@@ -4,7 +4,7 @@ package net.minthe.lgame;
  * Created by Michael Kelley on 11/13/14.
  * See LICENSE file for license information.
  */
-public class Point {
+public class Point implements Comparable<Point> {
     public final int row;
     public final int col;
 
@@ -24,5 +24,10 @@ public class Point {
         if (!(o instanceof Point)) return false;
         Point p = (Point)o;
         return p.row == this.row && p.col == this.col;
+    }
+
+    @Override
+    public int compareTo(Point p) {
+        return hashCode() - p.hashCode();
     }
 }

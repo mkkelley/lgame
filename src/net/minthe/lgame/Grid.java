@@ -1,9 +1,6 @@
 package net.minthe.lgame;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +28,7 @@ public class Grid {
 
     private boolean hasOverlaps() {
         List<Point> points = getOccupiedPoints();
-        points.sort((a,b) -> a.hashCode() - b.hashCode());
+        Collections.sort(points);
         for (int i = 0; i < points.size() - 1; i++) {
             if (points.get(i).equals(points.get(i + 1))) {
                 return true;
@@ -72,10 +69,8 @@ public class Grid {
         if (g.getOccupiedPoints().containsAll(this.getOccupiedPoints())) {
             return true;
         }
+        //TODO: finish
         return false;
-        // rotate 1 time, 2 times, 3 times.
-//        for (int i = 1; i < 4; i++) {
-//        }
     }
 
     public String toString() {
@@ -101,20 +96,4 @@ public class Grid {
         }
         return sb.toString();
     }
-
-//    public String toString() {
-//        List<Point> points = getOccupiedPoints();
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < rows; i++) {
-//            for (int j = 0; j < cols; j++) {
-//                if (points.contains(new Point(i, j))) {
-//                    sb.append('x');
-//                } else {
-//                    sb.append(' ');
-//                }
-//            }
-//            sb.append('\n');
-//        }
-//        return sb.toString();
-//    }
 }
