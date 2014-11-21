@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,9 +6,10 @@ import java.util.List;
  * Created by Michael Kelley on 11/17/14.
  * See LICENSE file for license information.
  */
-public class Test {
+public class PositionCounter {
     public static void main(String[] args) {
         ArrayList<Grid> grids = new ArrayList<>();
+        int allValidPositionsCount = 0;
 
         for (LPiece lp1 : allLPiecePlacements()) {
             for (LPiece lp2 : allLPiecePlacements()) {
@@ -18,17 +20,24 @@ public class Test {
                         g.add(lp2);
                         g.add(np);
                         g.add(np2);
-                        if (g.isValid() && !anythingPossible(lp1, lp2, np, np2)) {
-                            grids.add(g);
+                        if (g.isValid()) {
+                            allValidPositionsCount++;
+                            if (!anythingPossible(lp1, lp2, np, np2)) {
+                                grids.add(g);
+                            }
                         }
                     }
                 }
             }
         }
-
-        System.out.println(grids.size());
-
         grids.forEach(System.out::println);
+
+        System.out.print("Valid Position Count: ");
+        System.out.println(allValidPositionsCount);
+        System.out.print("Winning positions found: ");
+        System.out.println(grids.size());
+        System.out.println("Winning positions displayed above.");
+
     }
 
     public static List<LPiece> allLPiecePlacements() {
@@ -72,9 +81,5 @@ public class Test {
             }
         }
         return false;
-    }
-
-    public static int cpf(int a, int b) {
-        return (a + b)*(a + b + 1)/2 + b;
     }
 }
