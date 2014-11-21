@@ -65,20 +65,15 @@ public class PositionCounter {
     }
 
     public static boolean anythingPossible(LPiece winner, LPiece loser, NeutralPiece np1, NeutralPiece np2) {
-        for (int r = 0; r < 4; r++) {
-            for (int c = 0; c < 4; c++) {
-                for (int o = 0; o < 8; o++) {
-                    if (r == loser.getCorner().row && c == loser.getCorner().col && o == loser.getOrientation()) continue;
-                    LPiece possibleMove = new LPiece(o, new Point(r,c));
-                    Grid g = new Grid(4,4);
-                    g.add(winner);
-                    g.add(possibleMove);
-                    g.add(np1);
-                    g.add(np2);
-                    if (g.isValid()) {
-                        return true;
-                    }
-                }
+        for (LPiece possibleMove : allLPiecePlacements()) {
+            if (possibleMove.getCorner().equals(loser.getCorner()) && possibleMove.getOrientation() == loser.getOrientation()) continue;
+            Grid g = new Grid(4,4);
+            g.add(winner);
+            g.add(possibleMove);
+            g.add(np1);
+            g.add(np2);
+            if (g.isValid()) {
+                return true;
             }
         }
         return false;
